@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WcsService>
+    <WcsCatalog className="opendap.semantics.IRISail.StaticRDFCatalog">
+        
+        <useUpdateCatalogThread updateInterval="1200"/>
+        
+        <CacheDirectory>./run/repositorycache</CacheDirectory>
+        
+        <ResourcePath>/data/haibo/workspace/olfstrunk/resources/WCS</ResourcePath> 
+        <RdfImport>http://iri.columbia.edu/~benno/opendaptest/daptestpreload.owl</RdfImport>
+     
+      
+       <dataset>http://test.opendap.org:8080/opendap/ioos/200803061600_HFRadar_USEGC_6km_rtv_SIO.ncml</dataset>
+       <dataset>http://test.opendap.org:8080/opendap/ioos/ECMWF_ERA-40_subset.ncml</dataset>
+  <dataset>http://test.opendap.org:8080/opendap/ioos/mday_joinExist.ncml.ddx</dataset>
+
+  <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/ncml/examples/200803061600_HFRadar_USEGC_6km_rtv_SIO.ncml.rdf</dataset> 
+
+        <RdfImport>http://pantano.ldeo.columbia.edu:8080/opendap/data/ncml/examples/ECMWF_ERA-40_subset.ncml.rdf</RdfImport>
+        
+       <!-- <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006001_2006031_ssta.nc.rdf</dataset>
+              <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006032_2006059_ssta.nc.rdf</dataset> 
+         <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006060_2006090_ssta.nc.rdf</dataset>
+
+            <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006091_2006120_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006121_2006151_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006152_2006181_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006182_2006212_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006213_2006243_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006244_2006273_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006274_2006304_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006305_2006334_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2006335_2006365_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007001_2007031_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007032_2007059_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007060_2007090_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007091_2007120_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007121_2007151_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007152_2007181_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007182_2007212_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007213_2007243_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007244_2007273_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007274_2007304_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007305_2007334_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2007335_2007365_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008001_2008031_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008032_2008060_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008061_2008091_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008092_2008121_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008122_2008152_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008153_2008182_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008183_2008213_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008214_2008244_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008245_2008274_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008275_2008305_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008306_2008335_ssta.nc.rdf</dataset>
+        <dataset>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/PH2008336_2008366_ssta.nc.rdf</dataset>  -->   
+ 
+<!--  <dataset>http://satdat1.gso.uri.edu/opendap/Pathfinder/Northwest_Atlantic/6km/declouded_6km_aggregated.ncml.ddx</dataset> -->    
+<!--<ThreddsCatalog>http://pantano.ldeo.columbia.edu:8080/opendap/data/nc/examples/catalog.xml</ThreddsCatalog> -->
+
+
+    </WcsCatalog>
+</WcsService>

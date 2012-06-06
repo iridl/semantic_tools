@@ -1,0 +1,21 @@
+Check out xmldocs from SVN
+svn co https://svn.iri.columbia.edu/dl/xmldocs
+
+Steps to start xmldocs server:
+1. Create a war file: in the xmldocs directory, run 
+ant build
+
+2. Stop tomcat server in /opt and remove old xmldocs.war and xmldocs dir from webapps
+3. Copy build/dist/xmldocs.war to tomcat/webapps
+4. Start up the tomcat and will use the new war file to build out the xmldocs dirs
+
+To build command-line executable iriwms.jar,
+
+svn co https://svn.iri.columbia.edu/dl/xmldocs
+cd xmldocs
+ant iriwms
+
+to run:
+cd build/jar
+mkdir coveragelistcache
+java -jar iriwms.jar -cache=coveragelistcache 'http://www.opengis.net/wcs/1.1#CoverageDescriptions' 'http://www.opengis.net/wcs/1.1#CoverageDescription'

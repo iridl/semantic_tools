@@ -1,0 +1,27 @@
+When checking in new build.xml file, make sure to update MANIFESTgeneratentriples.MF
+
+Steps to checkout generatentriples:
+1. mkdir svntest (any name you want)
+2. cd svntest 
+3. svn co https://svn.iri.columbia.edu/dl/generatentriple
+
+
+Steps to test generatentriples with OPeNDAP example:
+1. cd generatentriple
+2. ant build # which will generate a new directory build.
+3. java -jar build/dist/generatentriples.jar wcs_service.xml
+  * Note, wcs_service.xml must be in the directory where you run above command.
+
+The result will be in dist/run/repositorycache/
+
+Steps to run generatentriples with DL example:
+java -Xmx3000m -jar build/dist/generatentriples.jar -cache=./build/dist/run/dlmetadatatest -notimport=./urltoskip-dl.txt -dropChoice=dropWithMemoryStoreDeleteRepository http://iridl.ldeo.columbia.edu/ontologies/iridlmetadata.owl >dl.log 
+
+to run with a proxy, use this guideline:
+ -DproxySet=true  -DproxyHost=ipAddressOrHostname  -DproxyPort=portNumber 
+ 
+do not run with a proxy when accessing https:// sources
+ 
+ java -Xmx3000m -jar build/dist/generatentriples.jar -DproxySet=true  -DproxyHost=iridl2p.ldeo.columbia.edu  -DproxyPort=3128 -cache=./build/dist/run/dlmetadatatest -notimport=./urltoskip-dl.txt -dropChoice=dropWithMemoryStoreDeleteRepository http://iridl.ldeo.columbia.edu/ontologies/iridlmetadata.owl >dl.log 
+ 
+ 

@@ -1,0 +1,2 @@
+http://iridl.ldeo.columbia.edu/SOURCES/.WCRP/.CMIP3/rdf.xml
+http://iridl.ldeo.columbia.edu/SOURCES/.LDEO/rdf.xml

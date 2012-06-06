@@ -1,0 +1,19 @@
+JarIndex-Version: 1.0
+
+owlim-lite-4.3.jar
+com
+com/ontotext
+com/ontotext/a
+com/ontotext/b
+com/ontotext/trree
+com/ontotext/trree/a
+com/ontotext/trree/b
+com/ontotext/trree/mbeans
+com/ontotext/trree/owlim_ext
+com/ontotext/trree/owlim_ext/a
+com/ontotext/trree/owlim_ext/config
+com/ontotext/trree/owlim_ext/rules
+com/ontotext/trree/owlim_ext/util
+owlim
+owlim.public.key
+

@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<!--
+/////////////////////////////////////////////////////////////////////////////
+// This file is part of the DL Semnatic XMLDOCS project.
+//
+/////////////////////////////////////////////////////////////////////////////
+-->
+<project basedir="." default="all" name="xmldocs">
+   
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    
+    <property name="XMLDOCS_VERSION" value="Not.A.Release"/>
+
+    <!-- Project directories -->
+    <property name="src.dir" location="src"/>
+    <property name="doc.dir" location="doc"/>
+    <property name="lib.dir" location="WebContent/WEB-INF/lib"/>
+    <property name="webContent.dir" location="WebContent"/>
+    <property name="WebInfResources.dir" location="${webContent.dir}/WEB-INF"/>
+    
+    <!-- Build Directories -->
+    <property name="build.dir" location="build"/>
+    <property name="build.classes" location="${build.dir}/classes"/>
+    <property name="build.doc" location="${build.dir}/doc"/>
+    <property name="build.dist" location="${build.dir}/dist"/>
+    <property name="build.jar" location="${build.dir}/jar"/>
+    <property name="build.lib" location="${build.dir}/lib"/>
+    <property name="build.run" location="${build.dir}/run"/>
+    <property name="build.src" location="${build.dir}/src"/>
+    <!-- Compiler Settings -->
+
+    <property name="compile.debug" value="on"/>
+    <property name="compile.debuglevel" value="lines,vars,source"/>
+    <property name="compile.deprecation" value="on"/>
+
+    <property name="modern.compiler" value="modern"/>
+    <property name="classic.compiler" value="classic"/>
+
+    <property name="build.compiler" value="${modern.compiler}"/>
+    <property name="build.sysclasspath" value="ignore"/>
+
+    <path id="libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/apache-commons-cli-1.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/apache-commons-cli-1.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/apache-commons-codec-1.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/apache-commons-httpclient-3.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/apache-commons-lang-2.5.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/apache-commons-logging-1.1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/catalina-6.0.14.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/eml-2.1.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/generatentriples.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/httpclient.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jdom-1.1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/junit-4.4.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/logback-classic-0.9.26.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/logback-core-0.9.26.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/metacat-client.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/nceas-utilities.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/openrdf-sesame-2.6.2-onejar.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/opendap_olfs-experiments.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/owlim-lite-4.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/postgresql-8.4-701.jdbc4.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/saxon-9.1.0.5-jdom.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/saxon-9.1.0.5-s9api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/saxon-9.1.0.5.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/servlet-api-2.5.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/xalan.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/xercesImpl-2.8.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/xml-apis-2.8.1.jar"/>
+    </path>
+
+    <!-- Library (class)paths -->
+    <path id="xmldocs.compile.classpath">
+      <pathelement path="${build.classes}"/>
+      <fileset dir="${lib.dir}">
+        <include name="owlim-lite-4.3.jar"/>
+        <include name="servlet-api-2.5.jar"/>
+        <include name="apache-commons-cli-1.0.jar"/>
+        <include name="apache-commons-codec-1.3.jar"/>
+        <include name="apache-commons-httpclient-3.1.jar"/>
+        <include name="apache-commons-logging-1.1.1.jar"/>
+        <include name="catalina-6.0.14.jar"/>
+        <include name="junit-4.4.jar"/>
+        <include name="saxon-9.1.0.5.jar"/>
+        <include name="saxon-9.1.0.5-jdom.jar"/>
+        <include name="saxon-9.1.0.5-s9api.jar"/>
+        <include name="tomcat-5.5.0-servlet.jar"/>
+        <include name="xercesImpl-2.8.1.jar"/>
+        <include name="xml-apis-2.8.1.jar"/>
+        <include name="logback-classic-0.9.26.jar"/>
+        <include name="logback-core-0.9.26.jar"/>
+        <include name="openrdf-sesame-2.6.2-onejar.jar"/>
+        <include name="slf4j-api-1.6.1.jar"/>
+        <include name="jdom-1.1.1.jar"/>
+        <include name="generatentriples.jar"/>
+        <include name="opendap_olfs-experiments.jar"/>
+      </fileset>
+    </path>
+
+
+<target name="show" description="Show build settings.">
+
+        <echo level="info" message="Project Name:       ${ant.project.name}"/>
+        <echo level="info" message="Project File:       ${ant.file}"/>
+        <echo level="info" message="XMLDOCS Version:      ${XMLDOCS_VERSION}"/>
+        
+        <echo level="info" message=""/>
+        <echo level="info" message="Project Directories:"/>
+        <echo level="info" message="    src.dir:       ${src.dir}"/>
+        <echo level="info" message="    doc.dir:       ${doc.dir}"/>
+        <echo level="info" message="    lib.dir:       ${lib.dir}"/>
+        <echo level="info" message="    webContent.dir: ${webContent.dir}"/>
+        <echo level="info" message=""/>
+        <echo level="info" message="Build Directories:"/>
+        <echo level="info" message="    build.dir:      ${build.dir}"/>
+        <echo level="info" message="    build.classes:  ${build.classes}"/>
+        <echo level="info" message="    build.doc:      ${build.doc}"/>
+        <echo level="info" message=""/>
+        <echo level="info" message="Ant Properties:"/>
+        <echo level="info" message="    ant.file:          ${ant.file}"/>
+        <echo level="info" message="    ant.home:          ${ant.home}"/>
+        <echo level="info" message="    ant.java.version:  ${ant.java.version}"/>
+        <echo level="info" message="    ant.project.name:  ${ant.project.name}"/>
+        <echo level="info" message="    ant.version:       ${ant.version}"/>
+        <echo level="info" message="    basedir:           ${basedir}"/>
+        <echo level="info" message="    user.name:         ${user.name}"/>
+        <echo level="info" message="    user.home:         ${user.home}"/>
+        <echo level="info" message="    java.home:         ${java.home}"/>
+        <echo level="info" message=""/>
+
+    </target>
+   
+    <target name="init" description="Prepare all build directories.">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes}"/>
+        <mkdir dir="${build.doc}"/>
+        <mkdir dir="${build.dist}"/>
+        <mkdir dir="${build.lib}"/>
+        <mkdir dir="${build.run}"/>
+        <mkdir dir="${build.src}"/>
+    </target>
+	
+    <target name="all" depends="clean"
+            description="Builds lots of stuff."/>
+	
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+      
+    <target depends="clean,init" name="build">
+        <echo level="info" message="${ant.project.name}: ${ant.file} Compiling xmldocs"/>
+        <echo level="info"
+              message="Using the ${build.compiler} javac compiler"/>
+        <javac compiler="${build.compiler}"
+               destdir="${build.classes}" 
+               debug="${compile.debug}"
+               debuglevel="${compile.debuglevel}"
+               deprecation="${compile.deprecation}">
+            <classpath refid="libraryclasspath"/>
+            <src path="${src.dir}"/>
+            
+        </javac>
+
+    <war destfile="${build.dist}/xmldocs.war"
+      webxml="${WebInfResources.dir}/web.xml" >
+      <lib dir="${lib.dir}">
+                
+        <include name="owlim-lite-4.2.jar"/>
+        <include name="servlet-api.jar"/>
+        <include name="apache-commons-cli-1.0.jar"/>
+        <include name="apache-commons-codec-1.3.jar"/>
+        <include name="apache-commons-httpclient-3.1.jar"/>
+        <include name="apache-commons-logging-1.1.1.jar"/>
+        <include name="catalina-6.0.14.jar"/>
+        <include name="junit-4.4.jar"/>
+        <include name="saxon-9.1.0.5.jar"/>
+        <include name="saxon-9.1.0.5-jdom.jar"/>
+        <include name="saxon-9.1.0.5-s9api.jar"/>
+        <include name="tomcat-5.5.0-servlet.jar"/>
+        <include name="xercesImpl-2.8.1.jar"/>
+        <include name="xml-apis-2.8.1.jar"/>
+        <include name="logback-classic-0.9.26.jar"/>
+        <include name="logback-core-0.9.26.jar"/>
+        <include name="openrdf-sesame-2.6.2-onejar.jar"/>
+        <include name="slf4j-api-1.6.1.jar"/>
+        <include name="jdom-1.1.1.jar"/>
+        <include name="generatentriples.jar"/>
+        <include name="opendap_olfs-experiments.jar"/>
+      </lib>
+      <classes dir="${build.classes}"/>
+      <zipfileset dir="${lib.dir}" prefix="xmldocs-libraries">
+        <include name="owlim-lite-4.2.jar"/>
+        <include name="servlet-api.jar"/>
+        <include name="apache-commons-cli-1.0.jar"/>
+        <include name="apache-commons-codec-1.3.jar"/>
+        <include name="apache-commons-httpclient-3.1.jar"/>
+        <include name="apache-commons-logging-1.1.1.jar"/>
+        <include name="catalina-6.0.14.jar"/>
+        <include name="junit-4.4.jar"/>
+        <include name="saxon-9.1.0.5.jar"/>
+        <include name="saxon-9.1.0.5-jdom.jar"/>
+        <include name="saxon-9.1.0.5-s9api.jar"/>
+        <include name="tomcat-5.5.0-servlet.jar"/>
+        <include name="xercesImpl-2.8.1.jar"/>
+        <include name="xml-apis-2.8.1.jar"/>
+        <include name="logback-classic-0.9.26.jar"/>
+        <include name="logback-core-0.9.26.jar"/>
+        <include name="openrdf-sesame-2.6.2-onejar.jar"/>
+        <include name="slf4j-api-1.6.1.jar"/>
+        <include name="jdom-1.1.1.jar"/>
+        <include name="generatentriples.jar"/>
+        <include name="opendap_olfs-experiments.jar"/>
+     </zipfileset>
+ 	</war>
+    </target>
+    <target
+            name="iriwms"
+            description="Compile and Build the DL iriwms.jar"  >
+           
+        <echo level="info" message="AntFile: ${ant.file} Compiling DL IRIWMS"/>
+        <echo level="info"
+              message="Using the ${build.compiler} javac compiler"/>
+        <echo level="info" message=""/>
+
+        <javac compiler="${build.compiler}"
+               destdir="${build.classes}"
+               debug="${compile.debug}"
+               debuglevel="${compile.debuglevel}" >
+            
+            <classpath refid="xmldocs.compile.classpath"/>
+
+            <src path="${src.dir}"/>
+            <include name="iri/**/*.java"/>
+        </javac>
+    	
+        <mkdir dir="${build.jar}"/>
+       
+        <jar destfile="${build.jar}/iriwms.jar" basedir="${build.classes}"
+        manifest="WebContent/META-INF/MANIFEST.MF">
+           
+        </jar>
+        <copy todir="${build.jar}">
+             <fileset dir="${lib.dir}"/>
+        </copy>
+    </target>
+       
+</project>
