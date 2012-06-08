@@ -132,7 +132,7 @@
     <!-- Project directories -->
     <property name="src.dir" location="src"/>
     <property name="doc.dir" location="doc"/>
-    <property name="lib.dir" location="lib"/>
+    <property name="lib.dir" location="../lib"/>
     <property name="resources.dir" location="resources"/>
     <property name="initialContent.dir" location="${resources.dir}/initialContent"/>
     
@@ -157,7 +157,7 @@
 
     <property name="owlim.lib"            value="owlim-lite-4.3.jar"/>
     <property name="openrdf-sesame.lib"   value="openrdf-sesame-2.6.2-onejar.jar" />
-    <property name="opendap_olfs-experiments.lib"    value="opendap_olfs-experiments.jar"/>
+    <property name="opendap-olfs-experiments.lib"    value="opendap-olfs-experiments.jar"/>
 
     <property name="commons-cli.lib"        value="apache-commons-cli-1.2.jar"/>
     <property name="commons-httpclient.lib" value="apache-commons-httpclient-3.1.jar"/>
@@ -202,7 +202,7 @@
             <include name="${saxon.lib}"/>
             <include name="${catalina.lib}"/>
             <include name="${owlim.lib}"/>
-            <include name="${opendap_olfs-experiments.lib}"/>
+            <include name="${opendap-olfs-experiments.lib}"/>
             <include name="${openrdf-sesame.lib}"/>
             <include name="${slf4j.lib}"/>
             <include name="${logback-core.lib}"/>
