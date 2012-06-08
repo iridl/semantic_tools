@@ -133,6 +133,7 @@
     <property name="src.dir" location="src"/>
     <property name="doc.dir" location="doc"/>
     <property name="lib.dir" location="../libs"/>
+    <property name="olfslib.dir" location="../olfs/lib"/>
     <property name="resources.dir" location="resources"/>
     <property name="initialContent.dir" location="${resources.dir}/initialContent"/>
     
@@ -202,12 +203,14 @@
             <include name="${saxon.lib}"/>
             <include name="${catalina.lib}"/>
             <include name="${owlim.lib}"/>
-            <include name="${opendap-olfs-experiments.lib}"/>
             <include name="${openrdf-sesame.lib}"/>
             <include name="${slf4j.lib}"/>
             <include name="${logback-core.lib}"/>
             <include name="${logback-classic.lib}"/>
          </fileset>
+        <fileset dir="${olfslib.dir}">
+            <include name="${opendap-olfs-experiments.lib}"/>
+        </fileset>
     </path>
 
     <target name="all" depends="clean"

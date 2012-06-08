@@ -1,11 +1,5 @@
 When checking in new build.xml file, make sure to update MANIFESTgeneratentriples.MF
 
-Steps to checkout generatentriples:
-1. mkdir svntest (any name you want)
-2. cd svntest 
-3. svn co https://svn.iri.columbia.edu/dl/generatentriple
-
-
 Steps to test generatentriples with OPeNDAP example:
 1. cd generatentriple
 2. ant build # which will generate a new directory build.
