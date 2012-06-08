@@ -16,7 +16,7 @@
     <!-- Project directories -->
     <property name="src.dir" location="src"/>
     <property name="doc.dir" location="doc"/>
-    <property name="lib.dir" location="../lib"/>
+    <property name="lib.dir" location="../libs"/>
     <property name="webContent.dir" location="WebContent"/>
     <property name="WebInfResources.dir" location="${webContent.dir}/WEB-INF"/>
     

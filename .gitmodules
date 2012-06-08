@@ -1,5 +1,5 @@
-[submodule "lib"]
-	path = lib
+[submodule "libs"]
+	path = libs
 	url = git@bitbucket.org:iridl/java_libs.git
 [submodule "olfs"]
 	path = olfs
