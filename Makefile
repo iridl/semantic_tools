@@ -22,7 +22,7 @@ else
    BTARGET = build
 endif
 
-allcomponents = miconf olfs rdfcache xmldocs
+allcomponents = olfs rdfcache xmldocs
 
 .PHONY: build cleanlocal clean distclean tarball install version $(allcomponents)
 
