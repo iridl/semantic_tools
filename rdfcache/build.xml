@@ -109,7 +109,7 @@
         </copy>
     </target>
 
-    <target name="build" depends="doc" description="Compile and Build the DL generatentriples.jar"  >
+    <target name="build" depends="init,doc" description="Compile and Build the DL generatentriples.jar"  >
         <javac compiler="${build.compiler}" destdir="${build.classes}" debug="${compile.debug}" debuglevel="${compile.debuglevel}" > 
             <classpath refid="wms.compile.classpath"/>
             <src path="${build.src}"/>

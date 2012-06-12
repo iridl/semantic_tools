@@ -123,7 +123,7 @@
         <delete dir="${build.dir}"/>
     </target>
       
-    <target name="build" depends="clean,init">
+    <target name="build" depends="init">
         <javac compiler="${build.compiler}" destdir="${build.classes}" debug="${compile.debug}" debuglevel="${compile.debuglevel}" deprecation="${compile.deprecation}">
             <classpath refid="libraryclasspath"/>
             <src path="${src.dir}"/>
