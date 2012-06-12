@@ -11,6 +11,10 @@ IRI DL Semantic Tools
 
    make PREFIX=/usr/local/semantic_tools install
 
+* To create tarball::
+
+   make tarball
+
 * To clean up::
 
    make distclean

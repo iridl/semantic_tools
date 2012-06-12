@@ -4,3 +4,6 @@
 [submodule "olfs"]
 	path = olfs
 	url = git@bitbucket.org:iridl/olfs.git
+[submodule "miconf"]
+	path = miconf
+	url = git@bitbucket.org:iridl/miconf.git
