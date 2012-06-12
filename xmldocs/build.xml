@@ -9,8 +9,8 @@
     <property name="src.dir" location="src"/>
     <property name="doc.dir" location="doc"/>
     <property name="lib.dir" location="../libs"/>
-    <property name="olfslib.dir" location="../olfs/lib"/>
-    <property name="rdfcachelib.dir" location="../rdfcache/lib"/>
+    <property name="olfslib.dir" location="../olfs/build/lib"/>
+    <property name="rdfcachelib.dir" location="../rdfcache/build/jar"/>
     <property name="webContent.dir" location="WebContent"/>
     <property name="WebInfResources.dir" location="${webContent.dir}/WEB-INF"/>
     

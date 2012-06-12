@@ -14,7 +14,7 @@
     <property name="src.dir" location="src"/>
     <property name="doc.dir" location="doc"/>
     <property name="lib.dir" location="../libs"/>
-    <property name="olfslib.dir" location="../olfs/lib"/>
+    <property name="olfslib.dir" location="../olfs/build/lib"/>
     <property name="resources.dir" location="resources"/>
     <property name="initialContent.dir" location="${resources.dir}/initialContent"/>
     
