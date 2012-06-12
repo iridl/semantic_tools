@@ -13,5 +13,6 @@ clean distclean:
 
 install: build
 	$(INSTALL) -d $(PREFIX)/lib
-	$(INSTALL) -m 0644 build/jar/generatentriples.jar $(PREFIX)/lib
+	$(INSTALL) -m 0644 build/jar/iriwms.jar $(PREFIX)/lib
+	$(INSTALL) -m 0644 build/dist/xmldocs.war $(PREFIX)/lib
 

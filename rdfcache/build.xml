@@ -1,133 +1,14 @@
 <?xml version="1.0"?>
+<project name="generatentriples, part of the DL Semnatic WMS project" default="all" basedir=".">
 
-<!--
-/////////////////////////////////////////////////////////////////////////////
-// This file is part of the DL Semnatic WMS project.
-//
-/////////////////////////////////////////////////////////////////////////////
--->
-
-<!-- Build file for DL Semnatic WMS core software -->
-
-<project
-        name="generatentriples, part of the DL Semnatic WMS project"
-        default="all" basedir=".">
-
-    <!-- Global Properties for Java-DL Semnatic WMS software development -->
-
-
-
-    <!-- ********************************************* -->
-    <!-- Project-wide settings. All directories are    -->
-    <!-- relative to the project "Basedir" directory,  -->
-    <!-- which is assumed (by this file) to be set to  -->
-    <!-- ".."                                          -->
-    <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
-
-    <!-- Version Tag: Used for doing distribution builds.
-         This property should be set from the command
-         line by the distribution build script using
-         tag information from CVS.
-    -->
-    <property name="DLWMS_VERSION" value="Not.A.Release"/>
-   
     <!-- Compiler Settings -->
-
     <property name="compile.debug" value="on"/>
     <property name="compile.debuglevel" value="lines,vars,source"/>
     <property name="compile.deprecation" value="on"/>
-
     <property name="modern.compiler" value="modern"/>
     <property name="classic.compiler" value="classic"/>
-
-    <!--  build.compiler: This is a "magic" property.
-         In the javac task, if the "compiler" property is not
-         explicitly set, then javac will use the value of this
-         property ("build.compiler") to set the compiler type.
-
-    See the online ANT Users Manual.
-    Read the section the comipler attribute of the javac task.
-    http://ant.apache.org/manual/index.html
-    -->
     <property name="build.compiler" value="${modern.compiler}"/>
-
-
-
-    <!-- build.sysclasspath
-         The value of the build.sysclasspath
-         property controls how the system classpath, ie. the classpath in
-         effect when Ant is run, affects the behaviour of classpaths in
-         Ant. The default behavior varies from Ant to Ant task.
-
-         The values and their meanings are:
-            only -   Only the system classpath is used and classpaths
-                     specified in build files, etc are ignored. This
-                     situation could be considered as the person running
-                     the build file knows more about the environment
-                     than the person writing the build file
-            ignore - The system classpath is ignored. This situation is
-                     the reverse of the above. The person running the
-                     build trusts the build file writer to get the build
-                     file right
-            last -   The classpath is concatenated to any specified
-                     classpaths at the end. This is a compromise, where
-                     the build file writer has priority.
-            first -  Any specified classpaths are concatenated to the
-                     system classpath. This is the other form of compromise
-                     where the build runner has priority.
-
-    Excerpted from the online ANT users Manual
-    http://ant.apache.org/manual/sysclasspath.html
-    -->
     <property name="build.sysclasspath" value="ignore"/>
-
-
-
-    <!-- ********************************************* -->
-
-    <!-- Target to create the build directories -->
-    <!-- prior to a compile target. We also mark -->
-    <!-- the start time of the build for the log. -->
-
-    <target name="noop" description="Do Nothing Target">
-        <echo level="info" message="no-op target in ${ant.file}"/>
-    </target>
-
-
-    <target name="show" description="Show build settings.">
-
-        <echo level="info" message="Project Name:       ${ant.project.name}"/>
-        <echo level="info" message="Project File:       ${ant.file}"/>
-        <echo level="info" message="WMS Version:      ${DLWMS_VERSION}"/>
-        <echo level="info" message=""/>
-        <echo level="info" message="Project Directories:"/>
-        <echo level="info" message="    src.dir:       ${src.dir}"/>
-        <echo level="info" message="    doc.dir:       ${doc.dir}"/>
-        <echo level="info" message="    lib.dir:       ${lib.dir}"/>
-        <echo level="info" message="    resources.dir: ${resources.dir}"/>
-        <echo level="info" message=""/>
-        <echo level="info" message="Build Directories:"/>
-        <echo level="info" message="    build.dir:      ${build.dir}"/>
-        <echo level="info" message="    build.classes:  ${build.classes}"/>
-        <echo level="info" message="    build.doc:      ${build.doc}"/>
-        <echo level="info" message=""/>
-        <echo level="info" message="Ant Properties:"/>
-        <echo level="info" message="    ant.file:          ${ant.file}"/>
-        <echo level="info" message="    ant.home:          ${ant.home}"/>
-        <echo level="info" message="    ant.java.version:  ${ant.java.version}"/>
-        <echo level="info" message="    ant.project.name:  ${ant.project.name}"/>
-        <echo level="info" message="    ant.version:       ${ant.version}"/>
-        <echo level="info" message="    basedir:           ${basedir}"/>
-        <echo level="info" message="    user.name:         ${user.name}"/>
-        <echo level="info" message="    user.home:         ${user.home}"/>
-        <echo level="info" message="    java.home:         ${java.home}"/>
-        <echo level="info" message=""/>
-
-    </target>
-
-    <!-- ################################################################# -->
-    <!--                      Project Settings                             -->
-    <!-- ................................................................. -->
 
     <!-- Project directories -->
     <property name="src.dir" location="src"/>
@@ -146,8 +27,6 @@
     <property name="build.dist.doc" location="${build.dist}/doc"/>
     <property name="build.dist.run" location="${build.dist}/run"/>
    
-
-
     <!-- Libraries -->
     <property name="junit.lib"   value="junit-4.4.jar"/>
     <property name="jdom.lib"    value="jdom-1.1.1.jar"/>
@@ -155,36 +34,27 @@
     <property name="slf4j.lib"            value="slf4j-api-1.6.1.jar"/>
     <property name="logback-core.lib"     value="logback-core-0.9.26.jar"/>
     <property name="logback-classic.lib"  value="logback-classic-0.9.26.jar"/>
-
     <property name="owlim.lib"            value="owlim-lite-4.3.jar"/>
     <property name="openrdf-sesame.lib"   value="openrdf-sesame-2.6.2-onejar.jar" />
     <property name="opendap-olfs-experiments.lib"    value="opendap-olfs-experiments.jar"/>
-
     <property name="commons-cli.lib"        value="apache-commons-cli-1.2.jar"/>
     <property name="commons-httpclient.lib" value="apache-commons-httpclient-3.1.jar"/>
     <property name="commons-logging.lib"    value="apache-commons-logging-1.1.1.jar"/>
     <property name="commons-codec.lib"      value="apache-commons-codec-1.3.jar"/>
     <property name="commons-lang.lib"       value="apache-commons-lang-2.5.jar"/>
-    
     <property name="serializer.lib"    value="xalan-2.7.1-serializer.jar"/>
     <property name="xalan.lib"         value="xalan-2.7.1-xalan.jar"/>
     <property name="xercesImpl.lib"    value="xalan-2.7.1-xercesImpl.jar"/>
     <property name="xercesXmlApis.lib" value="xalan-2.7.1-xml-apis.jar"/>
     <property name="xsltc.lib"         value="xalan-2.7.1-xsltc.jar"/>
-    
     <property name="saxon-jdom.lib"  value="saxon-9.1.0.5-jdom.jar"/>
     <property name="saxon-s9api.lib" value="saxon-9.1.0.5-s9api.jar"/>
     <property name="saxon.lib"       value="saxon-9.1.0.5.jar"/>
-
     <property name="catalina.lib"       value="catalina-6.0.14.jar"/>
 
-
-    <available classname="com.fortify.dev.ant.SourceanalyzerTask"
-               property="fortify.present"/>
-
+    <available classname="com.fortify.dev.ant.SourceanalyzerTask" property="fortify.present"/>
     <property name="sourceanalyzer.buildid" value="FortifyBuild"/>
     <property name="rules.dir" value="fortify"/>
-
 
     <!-- Library (class)paths -->
     <path id="wms.compile.classpath">
@@ -213,8 +83,8 @@
         </fileset>
     </path>
 
-    <target name="all" depends="clean"
-            description="Builds lots of stuff."/>
+   <!-- targets -->
+    <target name="all" depends="build"/>
 
     <target name="clean" description="Clean up ALL build products.">
         <delete dir="${build.dir}"/>
@@ -227,90 +97,35 @@
         <mkdir dir="${build.dist}"/>
         <mkdir dir="${build.dist.doc}"/>
         <mkdir dir="${build.dist.run}"/>
-        
         <mkdir dir="${build.jar}"/>
-        <filter token="DlwmsVersion" value="${DLWMS_VERSION}"/>
-        <tstamp/>
-        <echo level="info" message="time: ${TSTAMP}"/>
     </target>
-    <target  name="PreProcessSourceCode"
-             depends="init"
-             description="Moves selected source code from the development tree into
-             the build/src directory. The code text is filtered to update version numbers.">
 
-        <echo level="info" message="AntFile: ${ant.file} Moving and filtering Source code."/>
-        <echo level="info" message=""/>
-
-
+    <target  name="PreProcessSourceCode" depends="init" description="Moves selected source code from the development tree into the build/src directory. The code text is filtered to update version numbers.">
         <copy todir="${build.src}" filtering="true">
             <fileset dir="${src.dir}">
-                <!-- include all the java files -->
                 <include name="iri/**"/>
-
-                <!-- Include the option code  -->
                 <include name="option/**"/>
-
             </fileset>
-
         </copy>
     </target>
 
-    <target
-            name="build"
-            depends="doc"
-            description="Compile and Build the DL generatentriples.jar"  >
-           
-        <echo level="info" message="AntFile: ${ant.file} Compiling DL WMS"/>
-        <echo level="info"
-              message="Using the ${build.compiler} javac compiler"/>
-        <echo level="info" message=""/>
-
-        <javac compiler="${build.compiler}"
-               destdir="${build.classes}"
-               debug="${compile.debug}"
-               debuglevel="${compile.debuglevel}" >
-            
+    <target name="build" depends="doc" description="Compile and Build the DL generatentriples.jar"  >
+        <javac compiler="${build.compiler}" destdir="${build.classes}" debug="${compile.debug}" debuglevel="${compile.debuglevel}" > 
             <classpath refid="wms.compile.classpath"/>
-
             <src path="${build.src}"/>
         </javac>
         
-        <jar destfile="${build.jar}/generatentriples.jar" basedir="${build.classes}"
-        manifest="MANIFESTgeneratentriples.MF">
-           
+        <jar destfile="${build.jar}/generatentriples.jar" basedir="${build.classes}" manifest="MANIFESTgeneratentriples.MF"> 
         </jar>
-        <copy file="${build.jar}/generatentriples.jar" 
-             todir="${build.dist}"/>
-        <copy todir="${build.dist}">
-             <fileset dir="${lib.dir}"/>
-        </copy>
     </target>
 
      
-   <target
-            name="doc"
-            depends="clean,PreProcessSourceCode,IsJavaDocUpToDate"
-            description="Builds JavaDoc for the DL WMS, if missing or out of date."
-            unless="JavaDocIsUpToDate"
-            >
-
-        <javadoc destdir="${build.dist.doc}/javadoc"
-                 Author="true"
-                 Verbose="true"
-                 Version="true"
-                 failonerror="true"
-                >
+   <target name="doc" depends="clean,PreProcessSourceCode,IsJavaDocUpToDate" description="Builds JavaDoc for the DL WMS, if missing or out of date." unless="JavaDocIsUpToDate" >
+        <javadoc destdir="${build.dist.doc}/javadoc" Author="true" Verbose="true" Version="true" failonerror="true" >
             <classpath refid="wms.compile.classpath"/>
-
             <packageset dir="${build.src}" defaultexcludes="yes"/>
-
-
         </javadoc>
 
-        <!-- Turning on filtering here allows us to inject the version number
-           - into the XSLT code that is hanging off of the docs tree.
-           -
-           -->
         <copy todir="${build.dist.doc}" filtering="false" >
             <fileset dir="${doc.dir}">
                 <exclude name="javadoc/**"/><!-- Exclude the javadoc directory in the ${doc.dir} dir -->
@@ -322,19 +137,13 @@
             <fileset dir="${doc.dir}/xsl" />
         </copy>
     </target>
-    <target
-            name="IsJavaDocUpToDate"
-            description="Checks to see if the JavaDoc is out of date."
-            >
-        <uptodate property="JavaDocIsUpToDate"
-                  targetfile="${build.dist.doc}/generatentriple/index.html">
+
+    <target name="IsJavaDocUpToDate" description="Checks to see if the JavaDoc is out of date." >
+        <uptodate property="JavaDocIsUpToDate" targetfile="${build.dist.doc}/generatentriple/index.html">
             <srcfiles dir="${src.dir}">
                 <include name="generatentriple/**/*.java"/>
             </srcfiles>
         </uptodate>
-
     </target>
-
-
 
 </project>
