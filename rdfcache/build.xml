@@ -120,7 +120,7 @@
     </target>
 
      
-   <target name="doc" depends="clean,PreProcessSourceCode,IsJavaDocUpToDate" description="Builds JavaDoc for the DL WMS, if missing or out of date." unless="JavaDocIsUpToDate" >
+   <target name="doc" depends="PreProcessSourceCode,IsJavaDocUpToDate" description="Builds JavaDoc for the DL WMS, if missing or out of date." unless="JavaDocIsUpToDate" >
         <javadoc destdir="${build.dist.doc}/javadoc" Author="true" Verbose="true" Version="true" failonerror="true" >
             <classpath refid="wms.compile.classpath"/>
             <packageset dir="${build.src}" defaultexcludes="yes"/>
