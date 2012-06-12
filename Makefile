@@ -36,6 +36,6 @@ install:
 	$(MAKE) PREFIX=$(abspath $(BUILD_DIR)) $(MARGS) TARGET=install
 	$(INSTALL) -d $(PREFIX)
 	$(INSTALL) -d $(BUILD_DIR)/lib
-	$(INSTALL) -m 0644 libs/* $(BUILD_DIR)/lib
+	$(INSTALL) -m 0644 libs/*.jar $(BUILD_DIR)/lib
 	$(TAR) cf - -C $(BUILD_DIR) . | $(TAR) xf - -C $(PREFIX)
 
