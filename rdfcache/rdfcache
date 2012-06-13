@@ -1,0 +1,42 @@
+#!/bin/sh -e
+
+bindir=$(dirname "$0")
+libdir="$bindir/../lib"
+
+export CLASSPATH="\
+$libdir/generatentriples.jar:\
+$libdir/apache-commons-cli-1.0.jar:\
+$libdir/apache-commons-cli-1.2.jar:\
+$libdir/apache-commons-codec-1.3.jar:\
+$libdir/apache-commons-httpclient-3.1.jar:\
+$libdir/apache-commons-lang-2.5.jar:\
+$libdir/apache-commons-logging-1.1.1.jar:\
+$libdir/catalina-6.0.14.jar:\
+$libdir/eml-2.1.0.jar:\
+$libdir/httpclient.jar:\
+$libdir/jdom-1.1.1.jar:\
+$libdir/junit-4.4.jar:\
+$libdir/logback-classic-0.9.26.jar:\
+$libdir/logback-core-0.9.26.jar:\
+$libdir/metacat-client.jar:\
+$libdir/nceas-utilities.jar:\
+$libdir/opendap-olfs-experiments.jar:\
+$libdir/openrdf-sesame-2.6.2-onejar.jar:\
+$libdir/owlim-lite-4.3.jar:\
+$libdir/postgresql-8.4-701.jdbc4.jar:\
+$libdir/saxon-9.1.0.5-jdom.jar:\
+$libdir/saxon-9.1.0.5-s9api.jar:\
+$libdir/saxon-9.1.0.5.jar:\
+$libdir/servlet-api-2.5.jar:\
+$libdir/slf4j-api-1.6.1.jar:\
+$libdir/urlrewrite-3.2.0.jar:\
+$libdir/xalan.jar:\
+$libdir/xercesImpl-2.8.1.jar:\
+$libdir/xml-apis-2.8.1.jar:\
+$CLASSPATH"
+
+echo $CLASSPATH;
+
+java -Xmx4096m -jar "$libdir/generatentriples.jar"
+
+#-cache=/home/haibo/dlmetadatatest -notimport=/home/haibo/urltoskip-dl.txt -dropChoice=dropWithMemoryStoreDeleteRepository http://iridl.ldeo.columbia.edu/ontologies/iridlmetadata.owl >dl.log

@@ -1,6 +1,5 @@
 PLAT ?= $(shell $(MICONF_PLAT))
 ARCH ?= $(shell arch)
-IARCH ?= ia32
 PREFIX ?= /usr/local/$(VER)
 
 BUILD_DIR = ___build
@@ -14,7 +13,7 @@ MICONF_PLAT = miconf/scripts/miconf-platform
 VER = $(shell $(MICONF_GVI) raw)
 TARBALL = $(VER)
 
-MARGS = PLAT=$(PLAT) ARCH=$(ARCH) IARCH=$(IARCH)
+MARGS = PLAT=$(PLAT) ARCH=$(ARCH)
 
 ifdef TARGET
    BTARGET = $(TARGET)
