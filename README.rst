@@ -7,9 +7,12 @@ IRI DL Semantic Tools
    cd semantic_tools
    git submodule update --recursive --init
 
-* To build and install semantic tools::
+* To build, install, and run semantic tools, for example::
 
    make PREFIX=/usr/local/semantic_tools install
+   export PATH=/usr/local/semantic_tools/bin:$PATH
+   rdfcache
+   xmlfromsesame
 
 * To create tarball::
 

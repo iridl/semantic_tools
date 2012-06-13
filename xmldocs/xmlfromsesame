@@ -1,0 +1,11 @@
+#!/bin/sh -e
+#
+# Usage:
+#    xmlfromsesame [-s=serverURL -r=repositoryID] [-cache=CacheDirectory] [-loadfromtrig=fullpatthtothetrigfile] [-out=OutputFilename] OuterProperty [-searchterm=SearchTerm | -instanceURI=InstanceURI]
+# Example:
+#    xmlfromsesame -cache=coveragelistcache 'http://www.opengis.net/wcs/1.1#CoverageDescriptions' 'http://www.opengis.net/wcs/1.1#CoverageDescription'
+#
+bindir=$(dirname "$0")
+libdir="$bindir/../lib"
+
+exec java -cp "$libdir/*" iri.wms.XMLfromSesame "$@"

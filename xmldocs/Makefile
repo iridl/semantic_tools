@@ -13,6 +13,9 @@ clean distclean:
 
 install: build
 	$(INSTALL) -d $(PREFIX)/lib
+	$(INSTALL) -d $(PREFIX)/bin
 	$(INSTALL) -m 0644 build/jar/iriwms.jar $(PREFIX)/lib
 	$(INSTALL) -m 0644 build/dist/xmldocs.war $(PREFIX)/lib
+	$(INSTALL) xmlfromsesame $(PREFIX)/bin
+
 
