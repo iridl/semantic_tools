@@ -1,25 +1,31 @@
 IRI DL Semantic Tools
 *********************
 
+* Prerequisites:
+
+   * To run: Java 1.6+.
+
+   * To build: Java 1.6+, GNU make, and Unix friendly environment. (Tested on Linux and Darwin platforms.)
+
 * To obtain the sources (including underlying submodules)::
 
-   git clone git@bitbucket.org:iridl/semantic_tools.git
-   cd semantic_tools
-   git submodule update --recursive --init
+   git clone --recursive git@bitbucket.org:iridl/semantic_tools.git
 
-* To build, install, and run semantic tools, for example::
+* To build::
 
-   make PREFIX=/usr/local/semantic_tools install
-   export PATH=/usr/local/semantic_tools/bin:$PATH
-   rdfcache
-   xmlfromsesame
+   make
 
-* To create tarball::
+* To install, for example, to ``~/semantic_tools``::
+
+   make PREFIX=~/semantic_tools install
+
+* To create a tarball for distribution::
 
    make tarball
 
-* To clean up::
+* To run semantic tools::
 
-   make distclean
-
+   export PATH=~/semantic_tools/bin:$PATH
+   rdfcache
+   xmlfromsesame
 
