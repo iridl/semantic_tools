@@ -26,6 +26,6 @@ IRI DL Semantic Tools
 * To run semantic tools::
 
    export PATH=~/semantic_tools/bin:$PATH
-   rdfcache
+   JAVAOPTS=-Xmx4096m rdfcache
    xmlfromsesame
 
