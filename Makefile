@@ -10,7 +10,7 @@ MV = mv
 MICONF_GVI = miconf/scripts/git-generate-version-info semantic_tools
 MICONF_PLAT = miconf/scripts/miconf-platform
 
-VER = $(shell $(MICONF_GVI) raw)
+VER = $(shell $(MICONF_GVI) tag)
 TARBALL = $(VER)
 
 MARGS = PLAT=$(PLAT) ARCH=$(ARCH)
