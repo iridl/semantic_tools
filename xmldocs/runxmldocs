@@ -1,0 +1,22 @@
+# local version, run in /data/jdcorral/SVN/generatentriple/build/
+# 20120626 new version will run off maproomtop.owl instead of maproomscrape.owl
+date --iso-8601=minutes
+/bin/rm -rf ./xmldocscache/*
+ java -Xmx2048m -jar dist/generatentriples.jar -cache=xmldocscache http://iridl.ldeo.columbia.edu/ontologies/maproomtop.owl http://iridl.ldeo.columbia.edu/ontologies/projectframework2xmldocs.owl > xmldocslog.`date --iso-8601=minutes`
+
+date --iso-8601=minutes
+/data/jdcorral/Sesame2/bin/sesame2_console.sh <<EOT
+connect http://iridlc6.ldeo.columbia.edu:8480/openrdf-sesame.
+open xmldocs.
+clear.
+load xmldocscache/owlimMaxRepository.nt.
+EOT
+date --iso-8601=minutes
+/data/jdcorral/Sesame2/bin/sesame2_console.sh <<EOCT
+connect http://iridlc1.ldeo.columbia.edu:8180/openrdf-sesame.
+open xmldocs.
+clear.
+load xmldocscache/owlimMaxRepository.nt.
+exit.
+EOCT
+date --iso-8601=minutes
