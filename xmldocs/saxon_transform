@@ -1,0 +1,10 @@
+#!/bin/sh -e
+#
+# Usage:
+#   saxon_transform input tab.xslt >output
+#
+bindir=$(dirname "$0")
+libdir="$bindir/../lib"
+#JAVAOPTS=${JAVAOPTS:--Xmx2048m}
+
+exec java $JAVAOPTS -cp "$libdir/*" net.sf.saxon.Transform "$@"
