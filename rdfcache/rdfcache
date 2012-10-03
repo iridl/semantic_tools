@@ -10,6 +10,6 @@
 #
 bindir=$(dirname "$0")
 libdir="$bindir/../lib"
-JAVAOPTS=${JAVAOPTS:--Xmx2048m}
+#JAVAOPTS=${JAVAOPTS:--Xmx2048m}
 
 exec java $JAVAOPTS -cp "$libdir/*" iri.semantics.GenerateNTriples "$@"
