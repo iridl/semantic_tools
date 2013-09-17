@@ -22,9 +22,7 @@
 	<classpathentry kind="lib" path="lib/postgresql-8.4-701.jdbc4.jar"/>
 	<classpathentry kind="lib" path="lib/RdfsRules_builtin.pie"/>
 	<classpathentry kind="lib" path="lib/Rules_builtin.pie"/>
-	<classpathentry kind="lib" path="lib/saxon-9.1.0.5-jdom.jar"/>
-	<classpathentry kind="lib" path="lib/saxon-9.1.0.5-s9api.jar"/>
-	<classpathentry kind="lib" path="lib/saxon-9.1.0.5.jar"/>
+	<classpathentry kind="lib" path="lib/saxon9he.jar"/>
 	<classpathentry kind="lib" path="lib/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="lib/setvars.cmd"/>
 	<classpathentry kind="lib" path="lib/setvars.sh"/>

@@ -47,9 +47,7 @@
     <property name="xercesImpl.lib"    value="xalan-2.7.1-xercesImpl.jar"/>
     <property name="xercesXmlApis.lib" value="xalan-2.7.1-xml-apis.jar"/>
     <property name="xsltc.lib"         value="xalan-2.7.1-xsltc.jar"/>
-    <property name="saxon-jdom.lib"  value="saxon-9.1.0.5-jdom.jar"/>
-    <property name="saxon-s9api.lib" value="saxon-9.1.0.5-s9api.jar"/>
-    <property name="saxon.lib"       value="saxon-9.1.0.5.jar"/>
+    <property name="saxon9he.lib"  value="saxon9he.jar"/>
     <property name="catalina.lib"       value="catalina-6.0.14.jar"/>
 
     <available classname="com.fortify.dev.ant.SourceanalyzerTask" property="fortify.present"/>
@@ -68,9 +66,7 @@
             <include name="${commons-logging.lib}"/>
             <include name="${commons-codec.lib}"/>
             <include name="${commons-lang.lib}"/>
-            <include name="${saxon-jdom.lib}"/>
-            <include name="${saxon-s9api.lib}"/>
-            <include name="${saxon.lib}"/>
+            <include name="${saxon9he.lib}"/>
             <include name="${catalina.lib}"/>
             <include name="${owlim.lib}"/>
             <include name="${openrdf-sesame.lib}"/>

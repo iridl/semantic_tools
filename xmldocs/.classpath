@@ -8,9 +8,7 @@
 	<classpathentry kind="lib" path="/data/haibo/wmsjar/apache-commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/data/haibo/wmsjar/catalina-6.0.14.jar"/>
 	<classpathentry kind="lib" path="/data/haibo/wmsjar/junit-4.4.jar"/>
-	<classpathentry kind="lib" path="/data/haibo/wmsjar/saxon-9.1.0.5.jar"/>
-	<classpathentry kind="lib" path="/data/haibo/wmsjar/saxon-9.1.0.5-jdom.jar"/>
-	<classpathentry kind="lib" path="/data/haibo/wmsjar/saxon-9.1.0.5-s9api.jar"/>
+	<classpathentry kind="lib" path="/data/haibo/wmsjar/saxon9he.jar"/>
 	<classpathentry kind="lib" path="/data/haibo/wmsjar/tomcat-5.5.0-servlet.jar"/>
 	<classpathentry kind="lib" path="/data/haibo/wmsjar/xercesImpl-2.8.1.jar"/>
 	<classpathentry kind="lib" path="/data/haibo/wmsjar/xml-apis-2.8.1.jar"/>
