@@ -231,7 +231,7 @@ public class GenerateNTriples {
                 String repositoryID =  opt.getSet().getOption("repository").getResultValue(0);;
                 catalog.updateIRIHTTPRepository(importURLs, notImport, sesameserver, repositoryID );
             }else{  // we are creating a repository in the cache dir, and ruleset is an optional parameter
-            	String RuleSet = "owl-max-optimized";
+            	String RuleSet = "owl2-rl-conf";
             	if (opt.getSet().isSet("ruleset")) {
                    RuleSet = opt.getSet().getOption("ruleset").getResultValue(0);
             	}
@@ -451,7 +451,8 @@ public class GenerateNTriples {
         // Choose the operational ruleset
         String ruleset;
         //ruleset = "owl-horst-optimized";
-        ruleset = "owl-max-optimized";
+        //ruleset = "owl-max-optimized";
+        ruleset = "owl2-rl-conf";
 
         owlimSail.setParameter("ruleset", ruleset);
                 
@@ -460,7 +461,7 @@ public class GenerateNTriples {
         
         log.info("Semantic Repository 'ruleset' set to: "+ ruleset);
 
-        log.info("Intializing Semantic Repository.");
+        log.info("Initializing Semantic Repository.");
 
         // Initialize repository
         repository.initialize(); //needed
@@ -508,6 +509,7 @@ public class GenerateNTriples {
         //String ruleset;
         //ruleset = "owl-horst-optimized";
         //ruleset = "owl-max-optimized";
+        ruleset = "owl2-rl-conf";
 
         owlimSail.setParameter("ruleset", ruleset);
                 
@@ -516,7 +518,7 @@ public class GenerateNTriples {
         
         log.info("Semantic Repository 'ruleset' set to: "+ ruleset);
 
-        log.info("Intializing Semantic Repository.");
+        log.info("Initializing Semantic Repository.");
 
         // Initialize repository
         repository.initialize(); //needed
