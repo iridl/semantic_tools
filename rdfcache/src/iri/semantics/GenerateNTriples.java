@@ -459,7 +459,7 @@ public class GenerateNTriples {
             e = (Element) i.next();
             datasetURL = e.getTextNormalize();
             if (!datasetURL.endsWith(".rdf")) {
-                if (datasetURL.endsWith(".ddx") | datasetURL.endsWith(".dds") | datasetURL.endsWith(".das")) {
+                if (datasetURL.endsWith(".ddx") || datasetURL.endsWith(".dds") || datasetURL.endsWith(".das")) {
                     datasetURL = datasetURL.substring(0, datasetURL.lastIndexOf("."));
                 }
                 datasetURL += ".rdf";
