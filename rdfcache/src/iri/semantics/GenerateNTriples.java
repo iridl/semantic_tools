@@ -214,7 +214,7 @@ public class GenerateNTriples {
                 try {
                     Vector<String> startingPoints = importURLs;
                     //log.info("updateIRISailRepository: Updating Repository...");
-                    catalog.updateIRISailRepository(dropWithMemoryStoreDeleteRepository, repository, startingPoints, notImport);
+                    catalog.updateIRISailRepository(dropWithMemoryStoreDeleteRepository, repository, startingPoints, notImport, RuleSet);
                 }
                 finally {
                    repository.shutDown();
@@ -225,7 +225,12 @@ public class GenerateNTriples {
             if (opt.getSet().isSet("construct") && opt.getSet().isSet("constructoutput")) {
                 String constructInFile;
                 String constructOutFile;
-                repository =  catalog.setupIRISailRepository();
+                
+                String RuleSet = "owl-max-optimized";
+                if (opt.getSet().isSet("ruleset")) {
+                   RuleSet = opt.getSet().getOption("ruleset").getResultValue(0);
+                }
+                repository =  catalog.setupIRISailRepository(RuleSet);
                 constructInFile = opt.getSet().getOption("construct").getResultValue(0);
                 constructOutFile =  opt.getSet().getOption("constructoutput").getResultValue(0);;
                 FileOutputStream out = new FileOutputStream(constructOutFile);
@@ -297,7 +302,7 @@ public class GenerateNTriples {
         }
     }  
 
-    public void updateIRISailRepository(boolean dropWithMemoryStoreDeleteRepository, Repository repository, Vector<String> importURLs, Vector<String> notImport)  throws RepositoryException, InterruptedException, RDFParseException, IOException {
+    public void updateIRISailRepository(boolean dropWithMemoryStoreDeleteRepository, Repository repository, Vector<String> importURLs, Vector<String> notImport, String ruleset)  throws RepositoryException, InterruptedException, RDFParseException, IOException {
         Lock repositoryWriteLock = _repositoryLock.writeLock();
         try {
             repositoryWriteLock.lock();
@@ -315,7 +320,7 @@ public class GenerateNTriples {
                    File repoPath = new File(catalogCacheDirectory);
                    RepositoryOps.deleteDirectory(repoPath);
                    //repository = RepositoryOps.setupOwlimSailRepository(catalogCacheDirectory, loadfromtrig);
-                   repository = setupIRISailRepository();
+                   repository = setupIRISailRepository(ruleset);
                    RepositoryOps.loadFromMem(repository);
                    RepositoryOps.deleteDirectory(memoryStore);
                 }
