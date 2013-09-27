@@ -42,16 +42,15 @@ public class GenerateNTriples {
     private Logger log;
 
     //private Repository owlse2;
-    
     private String resourcePath;
     private String catalogCacheDirectory;
     private String owlim_storage_folder;
     private Element _config;
     private String loadfromtrig;
     private ReentrantReadWriteLock _repositoryLock;
+
     public GenerateNTriples() {
         log = LoggerFactory.getLogger(this.getClass());
-       
         //owlse2 = null;
         _repositoryLock = new ReentrantReadWriteLock();
         resourcePath = "./";
@@ -86,8 +85,7 @@ public class GenerateNTriples {
         opt.getSet().addOption("dropChoice", Separator.EQUALS, Multiplicity.ZERO_OR_ONE);
        
         if (!opt.check()) {
-            catalog.log
-            .error("argument error ! Usage: java -jar generatentriples.jar [-login=user -pswd=password] " +
+            catalog.log.error("argument error ! Usage: java -jar generatentriples.jar [-login=user -pswd=password] " +
             		"[-cache=CacheDirectory -ruleset=Ruleset] [-notimport=notimportfile] " +
             		"[-sesame=serverURL -repository=repositoryID] " +
             		"[-dropChoice=flushRepositoryOnDrop/dropWithMemoryStore/dropWithMemoryStoreDeleteRepository] " +
@@ -97,38 +95,26 @@ public class GenerateNTriples {
           System.exit(1);
         }
         
-        
-        
         String[] infile = new String[opt.getSet().getData().size()];
         catalog.log.debug("data_sizw="+opt.getSet().getData().size());
         
         for(int j = 0; j< opt.getSet().getData().size(); j++){
-                    catalog.log.info("j=" + j);
+            catalog.log.info("j=" + j);
             infile[j]= opt.getSet().getData().get(j);
             catalog.log.debug("infile["+j+"] = " +infile[j]);
             catalog.log.info("file="+ infile[j]);
         }  
         if (args.length < 1) {
-            catalog.log
-                    .error("Usage: java -jar generatentriples.jar [-login=user -pswd=password] [-cache=CacheDirectory] [-notimport=notimportfile] [-sesame=serverURL -repository=repositoryID]" +
-                    		"[-loadfromtrig=fullpatthtothetrigfile] " +
-                            "[-construct=fileofconstructrule] [-constructoutput=fullpatthtothefileholdsconstructruleresults] config_file/owl_file");
-            catalog.log
-                    .error("Example: java -jar generatentriples.jar [-login=user -pswd=password] [-cache=CacheDirectory] [-notimport=notimportfile] [-sesame=serverURL -repository=repositoryID] " +
-                    		"[-loadfromtrig=fullpatthtothetrigfile] " +
-                    "[-construct=fileofconstructrule] [-constructoutput=fullpatthtothefileholdsconstructruleresults] config_file/owl_file");
-            catalog.log
-                    .error("Or: java -jar generatentriples.jar [-login=user -pswd=password] [-cache=CacheDirectory] [-notimport=notimportfile] [-sesame=serverURL -repository=repositoryID] " +
-                    		"[-loadfromtrig=fullpatthtothetrigfile] " +
-                    "[construct=fileofconstructrule] [-constructoutput=fullpatthtothefileholdsconstructruleresults] " +
-                    		"http://iri.columbia.edu/~haibo/opendaptest/datasetcoveragelist.owl");
-            catalog.log
-            .error("Or: java -jar generatentriples.jar [-login=user -pswd=password] [-cache=CacheDirectory] [-notimport=notimportfile] [-sesame=serverURL -repository=repositoryID] " +
-                    "[-loadfromtrig=fullpatthtothetrigfile] " +
-                    "[-construct=fileofconstructrule] [-constructoutput=fullpatthtothefileholdsconstructruleresults] " +        
-            "[-xmlfromhttp=true] http://iridl.ldeo.columbia.edu/ontologies/datalibrary.xml");
+            catalog.log.error("Usage: java -jar generatentriples.jar [-login=user -pswd=password] [-cache=CacheDirectory] [-notimport=notimportfile] [-sesame=serverURL -repository=repositoryID]" +
+               "[-loadfromtrig=fullpatthtothetrigfile] [-construct=fileofconstructrule] [-constructoutput=fullpatthtothefileholdsconstructruleresults] config_file/owl_file");
+            catalog.log.error("Example: java -jar generatentriples.jar [-login=user -pswd=password] [-cache=CacheDirectory] [-notimport=notimportfile] [-sesame=serverURL -repository=repositoryID] " +
+               "[-loadfromtrig=fullpatthtothetrigfile] [-construct=fileofconstructrule] [-constructoutput=fullpatthtothefileholdsconstructruleresults] config_file/owl_file");
+            catalog.log.error("Or: java -jar generatentriples.jar [-login=user -pswd=password] [-cache=CacheDirectory] [-notimport=notimportfile] [-sesame=serverURL -repository=repositoryID] " +
+               "[-loadfromtrig=fullpatthtothetrigfile] [construct=fileofconstructrule] [-constructoutput=fullpatthtothefileholdsconstructruleresults] http://iri.columbia.edu/~haibo/opendaptest/datasetcoveragelist.owl");
+            catalog.log.error("Or: java -jar generatentriples.jar [-login=user -pswd=password] [-cache=CacheDirectory] [-notimport=notimportfile] [-sesame=serverURL -repository=repositoryID] " +
+               "[-loadfromtrig=fullpatthtothetrigfile] [-construct=fileofconstructrule] [-constructoutput=fullpatthtothefileholdsconstructruleresults] " +        
+               "[-xmlfromhttp=true] http://iridl.ldeo.columbia.edu/ontologies/datalibrary.xml");
             System.exit(1);
-
         }
 
         try {
@@ -141,14 +127,15 @@ public class GenerateNTriples {
             if (opt.getSet().isSet("dropChoice")) {
                 
                 String dropChoice = opt.getSet().getOption("dropChoice").getResultValue(0);
-                if(dropChoice.equalsIgnoreCase("flushRepositoryOnDrop")){
-                RepositoryOps.setFlushRepositoryOnDrop();
+                if(dropChoice.equalsIgnoreCase("flushRepositoryOnDrop")) {
+                   RepositoryOps.setFlushRepositoryOnDrop();
                 }
                     
-                if(dropChoice.equalsIgnoreCase("dropWithMemoryStore")){
+                if(dropChoice.equalsIgnoreCase("dropWithMemoryStore")) {
                     RepositoryOps.setDropWithMemoryStore();
                 }
-                if(dropChoice.equalsIgnoreCase("dropWithMemoryStoreDeleteRepository")){
+
+                if(dropChoice.equalsIgnoreCase("dropWithMemoryStoreDeleteRepository")) {
                     RepositoryOps.setDropWithMemoryStoreDeleteDir();
                     catalog.log.info("drop = " + dropChoice);  
                     dropWithMemoryStoreDeleteRepository = true;
@@ -156,21 +143,17 @@ public class GenerateNTriples {
             }
             
             if (opt.getSet().isSet("xmlfromhttp")) {
-                
                 String xmlfromhttpStr = opt.getSet().getOption("xmlfromhttp").getResultValue(0);
-                if (xmlfromhttpStr.equals("true")){                
+                if (xmlfromhttpStr.equals("true")) {                
                     xmlfromhttp = true ;
                 }
             }
             Vector<String> importURLs = new Vector<String>();
             for(int i = 0; i<opt.getSet().getData().size(); i++){
                 configFileName = infile[i];
-                
-            //configFileName = infile[0];
+                //configFileName = infile[0];
                 if (configFileName.endsWith("xml") && xmlfromhttp == false) {
-                    
                     Element olfsConfig = Util.getDocumentRoot(configFileName);
-
                     catalog.log.debug("main() using config file: " + configFileName);
                     catalog._config = (Element) olfsConfig.getDescendants(
                             new ElementFilter("WcsCatalog")).next();
@@ -180,31 +163,28 @@ public class GenerateNTriples {
                     importURLs = catalog.getRdfImports(catalog._config);
                 } else {
                     importURLs.add(configFileName);
-
                 }
             }
             
             catalog.log.debug("main() using config file: " + configFileName);
-            
             String loginStr ="rdfscan";
             String passwordStr = "6804450";
             if (opt.getSet().isSet("login") && opt.getSet().isSet("pswd")) {
                 // React to option -login and -pswd
                 loginStr = opt.getSet().getOption("login").getResultValue(0);
                 passwordStr =  opt.getSet().getOption("pswd").getResultValue(0);;
-              }
+            }
             
             if (opt.getSet().isSet("cache")) {
                 // React to option -cache
                 catalog.catalogCacheDirectory = opt.getSet().getOption("cache").getResultValue(0);
-                if(!catalog.catalogCacheDirectory.endsWith("/")){
+                if (!catalog.catalogCacheDirectory.endsWith("/")) {
                     catalog.catalogCacheDirectory = catalog.catalogCacheDirectory + "/";
                 }
-                  catalog.log.info("Persistence is writen to " + catalog.catalogCacheDirectory);
-              }
+                catalog.log.info("Persistence is writen to " + catalog.catalogCacheDirectory);
+            }
             final String login =loginStr;
             final String password =passwordStr;
-            
 
             Authenticator.setDefault(new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
@@ -213,42 +193,32 @@ public class GenerateNTriples {
             });
             Vector <String> notImport = new Vector<String> ();
             if (opt.getSet().isSet("notimport")) {
-                
                 File notImportFile = new File(opt.getSet().getOption("notimport").getResultValue(0));
-                                
                 notImport = catalog.getNotImport(notImportFile);
-              }
+            }
             
             if (opt.getSet().isSet("loadfromtrig")) {
-                
                 catalog.loadfromtrig = opt.getSet().getOption("loadfromtrig").getResultValue(0);
-                
-              }
+            }
             
             if (opt.getSet().isSet("sesame") && opt.getSet().isSet("repository")) {
-               
                 String sesameserver = opt.getSet().getOption("sesame").getResultValue(0);
                 String repositoryID =  opt.getSet().getOption("repository").getResultValue(0);;
                 catalog.updateIRIHTTPRepository(importURLs, notImport, sesameserver, repositoryID );
-            }else{  // we are creating a repository in the cache dir, and ruleset is an optional parameter
-            	String RuleSet = "owl2-rl-conf";
+            } else {  // we are creating a repository in the cache dir, and ruleset is an optional parameter
+            	String RuleSet = "owl-max-optimized";
             	if (opt.getSet().isSet("ruleset")) {
                    RuleSet = opt.getSet().getOption("ruleset").getResultValue(0);
             	}
                 repository =  catalog.setupIRISailRepository(RuleSet);
                 try {
-                    
                     Vector<String> startingPoints = importURLs;
-                    
                     //log.info("updateIRISailRepository: Updating Repository...");
                     catalog.updateIRISailRepository(dropWithMemoryStoreDeleteRepository, repository, startingPoints, notImport);
-                    
                 }
                 finally {
                    repository.shutDown();
                 }
-            
-            
             }
             
             //save construct rule results into a file
@@ -259,61 +229,43 @@ public class GenerateNTriples {
                 constructInFile = opt.getSet().getOption("construct").getResultValue(0);
                 constructOutFile =  opt.getSet().getOption("constructoutput").getResultValue(0);;
                 FileOutputStream out = new FileOutputStream(constructOutFile);
-                if(repository != null){
-                RepositoryAps.runConstruct(repository, constructInFile, out);
+                if (repository != null) {
+                   RepositoryAps.runConstruct(repository, constructInFile, out);
                 }
                 repository.shutDown();
             }
-            
             endTime = new Date().getTime();
             elapsedTime = (endTime - startTime) / 1000.0;
             catalog.log.debug("Completed catalog update in " + elapsedTime + " seconds.");
-            catalog.log.debug("########################################################################################");
-            catalog.log.debug("########################################################################################");
-             
-                        
-            
-            
         } catch (RepositoryException e) {
-            catalog.log.error("Caught RepositoryException in main(): "
-                    + e.getMessage());
-
+            catalog.log.error("Caught RepositoryException in main(): " + e.getMessage());
         } catch (MalformedURLException e) {
-            catalog.log.error("Caught MalformedURLException in main(): "
-                    + e.getMessage()); 
+            catalog.log.error("Caught MalformedURLException in main(): " + e.getMessage()); 
         } catch (IOException e) {
-            catalog.log.error("Caught IOException in main(): "
-                    + e.getMessage());  
+            catalog.log.error("Caught IOException in main(): " + e.getMessage());  
         } catch (JDOMException e) {
-            catalog.log.error("Caught JDOMException in main(): "
-                    + e.getMessage());  
+            catalog.log.error("Caught JDOMException in main(): " + e.getMessage());  
         } catch (InterruptedException e) {
-            catalog.log.error("Caught InterruptedException in main(): "
-                    + e.getMessage());  
+            catalog.log.error("Caught InterruptedException in main(): " + e.getMessage());  
         } catch (RDFParseException e) {
-            catalog.log.error("Caught RDFParseException in main(): "
-                    + e.getMessage()); 
+            catalog.log.error("Caught RDFParseException in main(): " + e.getMessage()); 
         } 
     }
+
     private Vector<String> getNotImport (File notImportFile){
-               
         FileInputStream fis = null;
-        
         DataInputStream dis = null;
         Vector <String> notImport = new Vector<String> ();
         try {
           fis = new FileInputStream(notImportFile);
-
           // Here BufferedInputStream is added for fast reading.
-          
           dis = new DataInputStream(fis);
           //bis = new BufferedInputStream(dis);
           BufferedReader br = new BufferedReader(new InputStreamReader(dis));
           // dis.available() returns 0 if the file does not have more lines.
-          
           String strLine;
           //Read File Line By Line
-          while ((strLine = br.readLine()) != null)   {
+          while ((strLine = br.readLine()) != null) {
             // Print the content on the console
             log.debug (strLine);
             notImport.add(strLine); 
@@ -322,7 +274,6 @@ public class GenerateNTriples {
           fis.close();
           br.close();
           dis.close();
-
         } catch (FileNotFoundException e) {
           log.error("Caught FileNotFoundException Msg: "+e.getMessage());
         } catch (IOException e) {
@@ -330,63 +281,46 @@ public class GenerateNTriples {
         }
         return notImport;
     }
-    /**
-     * @throws IOException 
-     * @throws RDFParseException *****************************************************/
     public void updateIRIHTTPRepository(Vector<String> importURLs, Vector<String> notImport,String sesameURL, String repositoryID)  throws RepositoryException, InterruptedException, RDFParseException, IOException{
-
         IRIHTTPRepository repository = setupIRIHTTPRepository(sesameURL, repositoryID);
         try {
-            
             Vector<String> startingPoints = importURLs;
-
             log.info("updateCatalog(): Updating Repository...");
             if (updateRepository(repository, startingPoints, notImport)) {
                  RepositoryOps.updateExternalInference(repository, notImport, resourcePath, catalogCacheDirectory, loadfromtrig);            
-                  
-
-            }
-            else {
+            } else {
                 log.info("updateCatalog(): The repository was unchanged, nothing else to do.");
             }
         }
         finally {
             repository.shutDown();
         }
-
     }  
 
-
-    public void updateIRISailRepository(boolean dropWithMemoryStoreDeleteRepository, Repository repository, Vector<String> importURLs, Vector<String> notImport)  throws RepositoryException, InterruptedException, RDFParseException, IOException{
-
+    public void updateIRISailRepository(boolean dropWithMemoryStoreDeleteRepository, Repository repository, Vector<String> importURLs, Vector<String> notImport)  throws RepositoryException, InterruptedException, RDFParseException, IOException {
         Lock repositoryWriteLock = _repositoryLock.writeLock();
         try {
             repositoryWriteLock.lock();
             Vector<String> startingPoints = importURLs;
-
             //log.info("updateIRISailRepository: Updating Repository...");
             //boolean repositoryChanged = updateRepository(repository, startingPoints, notImport);
-            boolean repositoryChanged = RepositoryOps.updateSemanticRepository(repository, startingPoints, notImport, 
-                    resourcePath, catalogCacheDirectory, loadfromtrig);
+            boolean repositoryChanged = RepositoryOps.updateSemanticRepository(repository, startingPoints, notImport, resourcePath, catalogCacheDirectory, loadfromtrig);
             if (repositoryChanged) {
                 String workingDir = "./";
                 File memoryStore = new File(workingDir + "_MemoryStore_");
                 
-                if(memoryStore.exists() && dropWithMemoryStoreDeleteRepository){ //assume _MemoryStore_ is generated by dropping with memory store
-                repository.shutDown();
+                if (memoryStore.exists() && dropWithMemoryStoreDeleteRepository) { //assume _MemoryStore_ is generated by dropping with memory store
+                   repository.shutDown();
                 
-                File repoPath = new File(catalogCacheDirectory);
-                RepositoryOps.deleteDirectory(repoPath);
-                //repository = RepositoryOps.setupOwlimSailRepository(catalogCacheDirectory, loadfromtrig);
-                repository =setupIRISailRepository();
-                RepositoryOps.loadFromMem(repository);
-                RepositoryOps.deleteDirectory(memoryStore);
+                   File repoPath = new File(catalogCacheDirectory);
+                   RepositoryOps.deleteDirectory(repoPath);
+                   //repository = RepositoryOps.setupOwlimSailRepository(catalogCacheDirectory, loadfromtrig);
+                   repository = setupIRISailRepository();
+                   RepositoryOps.loadFromMem(repository);
+                   RepositoryOps.deleteDirectory(memoryStore);
                 }
-                
                 RepositoryOps.updateExternalInference(repository, notImport, resourcePath, catalogCacheDirectory, loadfromtrig);            
-            
-            }
-            else {
+            } else {
                 log.info("updateIRISailRepository(): The repository was unchanged, nothing else to do.");
             }
             String filename = catalogCacheDirectory + "owlimMaxRepository.trig";
@@ -397,23 +331,16 @@ public class GenerateNTriples {
             RepositoryOps.dumpRepository(repository, filename);   
         }
         finally {
-            
             repositoryWriteLock.unlock();
-
             log.info("updateIRISailRepository(): Catalog update complete.");
         }
-
     }    
     
     public boolean updateRepository(Repository repository, Vector <String> startingPoints, Vector <String> notImport) throws RepositoryException, InterruptedException, RDFParseException, IOException{
-
-        boolean repositoryChanged = RepositoryOps.updateSemanticRepository(repository, startingPoints, notImport,resourcePath, catalogCacheDirectory, loadfromtrig);
-
-        return repositoryChanged;
+        return RepositoryOps.updateSemanticRepository(repository, startingPoints, notImport,resourcePath, catalogCacheDirectory, loadfromtrig);
     }
   
-    private IRIHTTPRepository setupIRIHTTPRepository(String sesameURL, String repositoryID)
-            throws RepositoryException, InterruptedException {
+    private IRIHTTPRepository setupIRIHTTPRepository(String sesameURL, String repositoryID) throws RepositoryException, InterruptedException {
 
         log.info("Connect to server " + sesameURL + " ...");
         IRIHTTPRepository repository = new IRIHTTPRepository(sesameURL, repositoryID);
@@ -423,79 +350,24 @@ public class GenerateNTriples {
 
         log.info("Semantic Repository Ready.");
 
-        if(Thread.currentThread().isInterrupted())
+        if (Thread.currentThread().isInterrupted()) {
             throw new InterruptedException("Thread.currentThread.isInterrupted() returned 'true'.");
-        
-        return repository;
-
-    } 
-    private Repository setupIRISailRepository() throws RepositoryException, InterruptedException, RDFParseException, IOException {
-
-
-        log.info("Setting up Semantic Repository.");
-
-        //OWLIM Sail Repository (inferencing makes this somewhat slow)
-        SailImpl owlimSail = new com.ontotext.trree.owlim_ext.SailImpl();
-        Repository repository = new IRISailRepository(owlimSail); //owlim inferencing
-
-
-
-        log.info("Configuring Semantic Repository.");
-        File storageDir = new File(catalogCacheDirectory); //define local copy of repository
-        owlimSail.setDataDir(storageDir);
-        log.debug("Semantic Repository Data directory set to: "+ catalogCacheDirectory);
-        // prepare config
-        owlimSail.setParameter("storage-folder", owlim_storage_folder);
-        log.debug("Semantic Repository 'storage-folder' set to: "+owlim_storage_folder);
-
-        // Choose the operational ruleset
-        String ruleset;
-        //ruleset = "owl-horst-optimized";
-        //ruleset = "owl-max-optimized";
-        ruleset = "owl2-rl-conf";
-
-        owlimSail.setParameter("ruleset", ruleset);
-                
-        // switches on few performance "optimizations of the RDFS and OWL inference
-        owlimSail.setParameter("partialRdfs", "true");
-        
-        log.info("Semantic Repository 'ruleset' set to: "+ ruleset);
-
-        log.info("Initializing Semantic Repository.");
-
-        // Initialize repository
-        repository.initialize(); //needed
-        
-        //trig file (full path) to load into the repository. This is a work around
-        //to the persistent bug in owlim
-        if (loadfromtrig != null){
-        String inTrigFile = loadfromtrig;
-        RepositoryOps.clearRepository(repository);
-        RepositoryOps.loadRepositoryFromTrigFile(repository, inTrigFile);
-        String filename = catalogCacheDirectory + "afterloadingfromtrigfile.trig";
-        log.debug("updateRepository(): Dumping Semantic Repository to: " + filename);
-        RepositoryOps.dumpRepository(repository, filename);
         }
         
-        log.info("Semantic Repository Ready.");
-
-        if(Thread.currentThread().isInterrupted())
-            throw new InterruptedException("Thread.currentThread.isInterrupted() returned 'true'.");
-
         return repository;
+    } 
 
+    private Repository setupIRISailRepository() throws RepositoryException, InterruptedException, RDFParseException, IOException {
+        return setupIRISailRepository("owl-max-optimized"); // "owl-horst-optimized", "owl2-rl-conf"
     }
 
     private Repository setupIRISailRepository(String ruleset) throws RepositoryException, InterruptedException, RDFParseException, IOException {
 
-
         log.info("Setting up Semantic Repository.");
 
         //OWLIM Sail Repository (inferencing makes this somewhat slow)
         SailImpl owlimSail = new com.ontotext.trree.owlim_ext.SailImpl();
         Repository repository = new IRISailRepository(owlimSail); //owlim inferencing
-
-
 
         log.info("Configuring Semantic Repository.");
         File storageDir = new File(catalogCacheDirectory); //define local copy of repository
@@ -505,93 +377,62 @@ public class GenerateNTriples {
         owlimSail.setParameter("storage-folder", owlim_storage_folder);
         log.debug("Semantic Repository 'storage-folder' set to: "+owlim_storage_folder);
 
-        // Choose the operational ruleset
-        //String ruleset;
-        //ruleset = "owl-horst-optimized";
-        //ruleset = "owl-max-optimized";
-        ruleset = "owl2-rl-conf";
-
         owlimSail.setParameter("ruleset", ruleset);
                 
         // switches on few performance "optimizations of the RDFS and OWL inference
         owlimSail.setParameter("partialRdfs", "true");
         
         log.info("Semantic Repository 'ruleset' set to: "+ ruleset);
-
         log.info("Initializing Semantic Repository.");
 
         // Initialize repository
         repository.initialize(); //needed
         
-        //trig file (full path) to load into the repository. This is a work around
-        //to the persistent bug in owlim
-        if (loadfromtrig != null){
-        String inTrigFile = loadfromtrig;
-        RepositoryOps.clearRepository(repository);
-        RepositoryOps.loadRepositoryFromTrigFile(repository, inTrigFile);
-        String filename = catalogCacheDirectory + "afterloadingfromtrigfile.trig";
-        log.debug("updateRepository(): Dumping Semantic Repository to: " + filename);
-        RepositoryOps.dumpRepository(repository, filename);
+        //trig file (full path) to load into the repository. This is a work around to the persistent bug in owlim
+        if (loadfromtrig != null) {
+           String inTrigFile = loadfromtrig;
+           RepositoryOps.clearRepository(repository);
+           RepositoryOps.loadRepositoryFromTrigFile(repository, inTrigFile);
+           String filename = catalogCacheDirectory + "afterloadingfromtrigfile.trig";
+           log.debug("updateRepository(): Dumping Semantic Repository to: " + filename);
+           RepositoryOps.dumpRepository(repository, filename);
         }
         
         log.info("Semantic Repository Ready.");
 
-        if(Thread.currentThread().isInterrupted())
+        if (Thread.currentThread().isInterrupted()) {
             throw new InterruptedException("Thread.currentThread.isInterrupted() returned 'true'.");
+        }
 
         return repository;
-
     }
-
     
-    private void processConfig(Element config, String defaultCacheDirectory,
-            String defaultResourcePath) {
-
+    private void processConfig(Element config, String defaultCacheDirectory, String defaultResourcePath) {
         Element e;
         File file;
 
-        /**
-         * ######################################################## Process
-         * configuration.
-         */
+        // Process configuration.
         catalogCacheDirectory = defaultCacheDirectory;
         e = config.getChild("CacheDirectory");
-        if (e != null)
+        if (e != null) {
             catalogCacheDirectory = e.getTextTrim();
-        if (catalogCacheDirectory != null && catalogCacheDirectory.length() > 0
-                && !catalogCacheDirectory.endsWith("/"))
+        }
+        if (catalogCacheDirectory != null && catalogCacheDirectory.length() > 0 && !catalogCacheDirectory.endsWith("/")) {
             catalogCacheDirectory += "/";
+        }
 
         file = new File(catalogCacheDirectory);
-        /*if (!file.exists()) {
-            if (!file.mkdirs()) {
-                log.error("Unable to create cache directory: "
-                                + cacheDirectory);
-                if (!cacheDirectory.equals(defaultCacheDirectory)) {
-                    file = new File(defaultCacheDirectory);
-                    if (!file.exists()) {
-                        if (!file.mkdirs()) {
-                            log.error("Unable to create cache directory: "
-                                    + defaultCacheDirectory);
-                            log.error("Process probably doomed...");
-                        }
-                    }
-                } else {
-                    log.error("Process probably doomed...");
-                }
-
-            }
-        }*/
         log.info("Using cacheDirectory: " + catalogCacheDirectory);
 
         resourcePath = defaultResourcePath;
         e = config.getChild("ResourcePath");
-        if (e != null)
+        if (e != null) {
             resourcePath = e.getTextTrim();
+        }
 
-        if (resourcePath != null && resourcePath.length() > 0
-                && !resourcePath.endsWith("/"))
+        if (resourcePath != null && resourcePath.length() > 0 && !resourcePath.endsWith("/")) {
             resourcePath += "/";
+        }
 
         file = new File(this.resourcePath);
         if (!file.exists()) {
@@ -602,48 +443,32 @@ public class GenerateNTriples {
                         + defaultResourcePath);
                 log.error("Process probably doomed...");
             }
-
         }
-
         log.info("Using resourcePath: " + resourcePath);
-
     }
 
-
-
-
     private Vector<String> getRdfImports(Element config) {
-
         Vector<String> rdfImports = new Vector<String>();
         Element e;
         String s;
 
-        /**
-         * Load individual dataset references
-         */
+        // Load individual dataset references
         Iterator i = config.getChildren("dataset").iterator();
         String datasetURL;
         while (i.hasNext()) {
             e = (Element) i.next();
             datasetURL = e.getTextNormalize();
-
             if (!datasetURL.endsWith(".rdf")) {
-
-                if (datasetURL.endsWith(".ddx") | datasetURL.endsWith(".dds")
-                        | datasetURL.endsWith(".das")) {
-                    datasetURL = datasetURL.substring(0, datasetURL
-                            .lastIndexOf("."));
+                if (datasetURL.endsWith(".ddx") | datasetURL.endsWith(".dds") | datasetURL.endsWith(".das")) {
+                    datasetURL = datasetURL.substring(0, datasetURL.lastIndexOf("."));
                 }
                 datasetURL += ".rdf";
             }
             rdfImports.add(datasetURL);
-            log.info("Added dataset reference " + datasetURL
-                    + " to RDF imports list.");
+            log.info("Added dataset reference " + datasetURL + " to RDF imports list.");
         }
 
-        /**
-         * Load RDF Imports
-         */
+        // Load RDF Imports
         i = config.getChildren("RdfImport").iterator();
         while (i.hasNext()) {
             e = (Element) i.next();
@@ -651,11 +476,6 @@ public class GenerateNTriples {
             rdfImports.add(s);
             log.info("Added reference " + s + " to RDF imports list.");
         }
-
         return rdfImports;
-
     }
-   
-
-  
 }
