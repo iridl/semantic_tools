@@ -34,9 +34,10 @@
     <property name="slf4j.lib"            value="slf4j-api-1.6.1.jar"/>
     <property name="logback-core.lib"     value="logback-core-0.9.26.jar"/>
     <property name="logback-classic.lib"  value="logback-classic-0.9.26.jar"/>
-    <property name="owlim.lib"            value="owlim-lite-4.3.jar"/>
-    <property name="openrdf-sesame.lib"   value="openrdf-sesame-2.6.2-onejar.jar" />
+    <property name="owlim.lib"            value="owlim-lite-5.4.jar"/>
+    <property name="openrdf-sesame.lib"   value="openrdf-sesame-2.7.7-onejar.jar" />
     <property name="opendap-olfs-experiments.lib"    value="opendap-olfs-experiments.jar"/>
+    <property name="commons-io.lib"        value="commons-io-2.4.jar"/>
     <property name="commons-cli.lib"        value="apache-commons-cli-1.2.jar"/>
     <property name="commons-httpclient.lib" value="apache-commons-httpclient-3.1.jar"/>
     <property name="commons-logging.lib"    value="apache-commons-logging-1.1.1.jar"/>
@@ -49,6 +50,7 @@
     <property name="xsltc.lib"         value="xalan-2.7.1-xsltc.jar"/>
     <property name="saxon9he.lib"  value="saxon9he.jar"/>
     <property name="catalina.lib"       value="catalina-6.0.14.jar"/>
+    <property name="jsonld-java-sesame.lib"       value="jsonld-java-sesame-0.3.jar"/>
 
     <available classname="com.fortify.dev.ant.SourceanalyzerTask" property="fortify.present"/>
     <property name="sourceanalyzer.buildid" value="FortifyBuild"/>
@@ -61,6 +63,7 @@
             <include name="${servlet-api.lib}"/>
             <include name="${jdom.lib}"/>
             <include name="${junit.lib}"/>
+            <include name="${commons-io.lib}"/>
             <include name="${commons-cli.lib}"/>
             <include name="${commons-httpclient.lib}"/>
             <include name="${commons-logging.lib}"/>
@@ -70,6 +73,7 @@
             <include name="${catalina.lib}"/>
             <include name="${owlim.lib}"/>
             <include name="${openrdf-sesame.lib}"/>
+            <include name="${jsonld-java-sesame.lib}"/>
             <include name="${slf4j.lib}"/>
             <include name="${logback-core.lib}"/>
             <include name="${logback-classic.lib}"/>

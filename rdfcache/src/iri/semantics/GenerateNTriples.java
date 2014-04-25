@@ -235,7 +235,7 @@ public class GenerateNTriples {
                 constructOutFile =  opt.getSet().getOption("constructoutput").getResultValue(0);;
                 FileOutputStream out = new FileOutputStream(constructOutFile);
                 if (repository != null) {
-                   RepositoryAps.runConstruct(repository, constructInFile, out);
+		    RepositoryAps.runConstruct(repository, constructInFile, out, constructOutFile);
                 }
                 repository.shutDown();
             }
