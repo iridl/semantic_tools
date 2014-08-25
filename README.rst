@@ -5,7 +5,7 @@ IRI DL Semantic Tools
 
    * To run: Java 1.6+.
 
-   * To build: Java 1.6+, GNU make 3.81+, and Unix friendly environment. (Tested on Linux and Darwin platforms.)
+   * To build: Java 1.6+, ant, GNU make 3.81+, and Unix friendly environment. (Tested on Linux and Darwin platforms.)
 
 * To obtain the sources (including underlying submodules)::
 
